@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -34,7 +33,7 @@ public class Animal implements Serializable {
 	private String porte;
 	
 	@Column(name = "idade" , nullable = false, length = 100)
-	private int idade;
+	private String idade;
 	
 	@Column(name = "ativo", nullable = false)
 	private boolean ativo;
@@ -75,15 +74,22 @@ public class Animal implements Serializable {
      	this.porte = porte;
 	}
 	
-	public int getIdade() {
+	public String getIdade() {
      	return idade;
 	}
 	
-	public void setIdade(int idade) {
+	public void setIdade(String idade) {
      	this.idade = idade;
 	}
+	public Usuario getUsuario() {
+		 return usuario;
+		 }
+
+		 public void setUsuario(Usuario usuario) {
+		 this.usuario = usuario;
+		 }
 	
-	public boolean getAtivo() {
+public boolean getAtivo() {
 		
 		return ativo;
 		
@@ -100,7 +106,8 @@ public class Animal implements Serializable {
                        	+ "tipo=" + tipo + ","
                        	+ "raça=" + raca + ","
                        	+ "porte=" + porte + ","
-                       	+ "idade=" + idade + "]"
+                       	+ "idade=" + idade + ","
+                       	+ "ativo=" + ativo + ","
                        	+ "usuario=" + usuario + "]";
    	}
 

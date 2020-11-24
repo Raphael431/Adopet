@@ -6,32 +6,33 @@ import org.hibernate.validator.constraints.Length;
 
 public class UsuarioDto {
 	
-private int id;
+private String id;
    	
    	@NotEmpty(message = "Nome não pode ser vazio.")
    	@Length(min = 5, max = 100,
    	message = "Nome do usuário deve ter no mínimo 5 e no máximo 100 caracteres.")
    	private String nome;
    	
-   	@NotEmpty(message = "Senha não pode ser vazio.")
+   	@NotEmpty(message = "Senha não pode ser vazia.")
+   	@Length(min = 5, max = 20,
+   	message = "Senha do usuário deve ter no mínimo 5 e no máximo 20 caracteres.")
    	private String senha;
    	
-   	@NotEmpty(message = "Email de validade não pode ser vazio.")
+   	@NotEmpty(message = "Email não pode ser vazio.")
    	private String email;
    	
    	@NotEmpty(message = "Telefone não pode ser vazio.")
    	@Length(min = 8, max = 11,
-   	message = "Nome do usuário deve ter no mínimo 5 e no máximo 100 caracteres.")
+   	message = "Telefone do usuário deve ter no mínimo 8 e no máximo 11 caracteres.")
    	private String telefone;
    	
-	@NotEmpty(message = "Ativo não pode ser vazio.")
    	private boolean ativo;
    	
-   	public int getId() {
+   	public String getId() {
          	return id;
    	}
    	
-   	public void setId(int id) {
+   	public void setId(String id) {
          	this.id = id;
    	}
    	
@@ -77,7 +78,7 @@ private int id;
 		this.ativo = ativo;
 		
 	}
-   	
+	
    	@Override
    	public String toString() {
          	return "Usuario[" + "id=" + id + ","

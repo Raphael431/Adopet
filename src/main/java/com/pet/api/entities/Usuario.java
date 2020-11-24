@@ -28,13 +28,13 @@ public class Usuario implements Serializable {
 	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
 	
-	@Column(name = "senha", nullable = false, length = 100)
+	@Column(name = "senha", nullable = false, length = 20)
 	private String senha;
 	
 	@Column(name = "email", nullable = false, length = 100, unique = true)
 	private String email;
 	
-	@Column(name = "telefone" , nullable = false, length = 11, unique = true)
+	@Column(name = "telefone" , nullable = false, length = 11)
 	private String telefone;
 	
 	@Column(name = "ativo", nullable = false)
@@ -43,7 +43,6 @@ public class Usuario implements Serializable {
 	@JsonManagedReference
    	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    	private List<Animal> animais;
-	
 	
 	public int getId() {
 		return id;
@@ -84,18 +83,23 @@ public class Usuario implements Serializable {
 	public void setTelefone(String telefone) {
      	this.telefone = telefone;
 	}
-
+	
 	public boolean getAtivo() {
-		
-		return ativo;
-		
+     	return ativo;
 	}
 	
 	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-		
+     	this.ativo = ativo;
 	}
 	
+	public List<Animal> getAnimais() {
+		return animais;
+	}
+	
+	public void setAnimais(List<Animal> animais) {
+		this.animais = animais;
+	}
+
 	@Override
    	public String toString() {
          	return "Usuario[" + "id=" + id + ","

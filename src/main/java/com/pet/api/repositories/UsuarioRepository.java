@@ -1,6 +1,6 @@
 package com.pet.api.repositories;
  
-import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,7 +12,13 @@ import com.pet.api.entities.Usuario;
  
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
    	
+	@Transactional(readOnly = true)
+   	Usuario findByEmailAndAtivo(String email, boolean ativo);
+	
+	@Transactional(readOnly = true)
+   	Optional<Usuario> findById(int id);
    	
+	
    	@Transactional
    	@Modifying(clearAutomatically = true)
    	@Query("UPDATE Usuario SET senha = :novasenha WHERE id = :idusuario")
@@ -21,14 +27,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
    	
    	@Transactional
    	@Modifying(clearAutomatically = true)
-   	@Query("UPDATE usuario SET telefone = :novonum WHERE id = :idusuario")
-   	void AtualizarData(@Param("novonum") String novonum, @Param("idusuario") int idusuario);
-   	
-   	
-   	@Transactional
-   	@Modifying(clearAutomatically = true)
-   	@Query("UPDATE usuario SET ativo = false WHERE id = :idusuario")
-   	void Bloquear(@Param("idusuario") int idusuario );
+   	@Query("UPDATE Usuario SET ativo = false WHERE id = :idusuario")
+   	Usuario Bloquear(@Param("idusuario") int idusuario );
    	
 
 }
